@@ -1,0 +1,5 @@
+const { MessageEmbed } = require("discord.js");
+
+exports.run = (client, msg, args) => {
+  msg.reply("sample");
+};

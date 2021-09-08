@@ -13,11 +13,6 @@ const client = new Client({
 // Login to Discord with your client's token
 client.login(token);
 
-// Log meassage when connected
-client.on("ready", () => {
-  console.log(`Logged in as ${client.user.tag}`);
-});
-
 fs.readdir("./events/", (err, files) => {
   if (err) return console.error(err);
   files.forEach((file) => {
