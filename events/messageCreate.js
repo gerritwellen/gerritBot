@@ -3,13 +3,13 @@ module.exports = (client, msg) => {
   if (msg.author.bot) return;
   //  Check for blocked/allowed channels
   if (
-    client.config.blockedChannels.length == 0 &&
+    client.config.blockedChannels.length !== 0 &&
     msg.channelId == client.config.blockedChannels
   ) {
     return;
   }
   if (
-    client.config.allowedChannels.length == 0 &&
+    client.config.allowedChannels.length !== 0 &&
     msg.channelId !== client.config.allowedChannels
   ) {
     return;
