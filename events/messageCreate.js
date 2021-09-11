@@ -2,6 +2,8 @@ module.exports = (client, msg) => {
   // Ignore all bots
   if (msg.author.bot) return;
 
+  if (msg.channelId == client.config.blockedChannels) return;
+
   // Ignore messages not starting with the prefix (in config.json)
   if (msg.content.charAt(0) !== "!") return;
 

@@ -3,15 +3,15 @@ const fs = require("fs");
 
 // Require the necessary discord.js classes
 const { Client, Collection, Intents } = require("discord.js");
-const { token } = require("./config.json");
+const config = require("./config.json");
 
 // Create a new client instance
 const client = new Client({
   intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES],
 });
+client.config = config;
 
-// Login to Discord with your client's token
-client.login(token);
+client.login(client.config.token);
 
 fs.readdir("./events/", (err, files) => {
   if (err) return console.error(err);
