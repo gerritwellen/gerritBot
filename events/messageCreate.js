@@ -1,21 +1,24 @@
 module.exports = (client, msg) => {
   // Ignore all bots
   if (msg.author.bot) return;
+
   //  Check for blocked/allowed channels
-  if (
-    client.config.blockedChannels.length !== 0 &&
-    msg.channelId == client.config.blockedChannels
-  ) {
-    return;
-  }
-  if (
-    client.config.allowedChannels.length !== 0 &&
-    msg.channelId !== client.config.allowedChannels
-  ) {
-    return;
-  }
+  let allowed = false;
+  client.config.allowedChannels.forEach((element) => {
+    if (msg.channelId === element) {
+      allowed = true;
+    }
+  });
+  client.config.blockedChannels.forEach((element) => {
+    if (msg.channelId !== element) {
+      allowed = true;
+    }
+  });
+
+  if (!allowed) return;
+
   // Ignore messages not starting with the prefix (in config.json)
-  if (msg.content.charAt(0) !== "!") return;
+  if (msg.content.charAt(0) !== client.config.prefix) return;
 
   let args = msg.content.split(" ");
   let command = args.shift().substring(1);
