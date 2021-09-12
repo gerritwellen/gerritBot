@@ -23,7 +23,6 @@ module.exports = (client, msg) => {
   if (client.config.blockedChannels.length > 0) {
     let allowed = true;
     client.config.blockedChannels.forEach((element) => {
-      console.log(`${element} ? ${msg.channelId}`);
       if (msg.channelId === element) {
         allowed = false;
       }
@@ -35,7 +34,6 @@ module.exports = (client, msg) => {
 
   // Ignore messages not starting with the prefix (in config.json)
   if (msg.content.charAt(0) !== client.config.prefix) {
-    console.log("noPrefix");
     return;
   }
 
