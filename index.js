@@ -17,6 +17,7 @@ fs.readdir("./events/", (err, files) => {
   files.forEach((file) => {
     const event = require(`./events/${file}`);
     let eventName = file.split(".")[0];
+    console.log(`Attempting to load event ${eventName}`);
     client.on(eventName, event.bind(null, client));
   });
 });
@@ -43,26 +44,9 @@ const slashCommandFiles = fs
 
 for (const file of slashCommandFiles) {
   const slashCommand = require(`./slashCommands/${file}`);
+  console.log(`Attempting to load slashcommand ${slashCommand.data.name}`);
   client.slashCommands.set(slashCommand.data.name, slashCommand);
 }
-
-client.on("interactionCreate", async (interaction) => {
-  if (!interaction.isCommand()) return;
-
-  const slashCommand = client.slashCommands.get(interaction.commandName);
-
-  if (!slashCommand) return;
-
-  try {
-    await slashCommand.execute(interaction, client);
-  } catch (error) {
-    console.error(error);
-    return interaction.reply({
-      content: "There was an error while executing this command!",
-      ephemeral: true,
-    });
-  }
-});
 
 // Login
 client.login(client.config.token);
