@@ -8,21 +8,18 @@ module.exports = {
     .setDescription("Shows Bot Uptime"),
   async execute(interaction, client) {
     let uptimeEmbed = new MessageEmbed()
-      .setTitle(`Information about Bot Uptime`)
       .addField(
-        `**${client.user.username}**'s Uptime`,
+        `Uptime of **${client.user.username}**`,
         `${prettyMs(client.uptime, {
           secondsDecimalDigits: 0,
         })}`,
         true
       )
       .setColor(
-        interaction.member.displayHexColor === "#000000"
+        client.user.displayHexColor === "#000000"
           ? "#FFFFFF"
-          : interaction.member.displayHexColor
-      )
-      .setFooter(`ID: ${interaction.member.id}`)
-      .setTimestamp(new Date());
+          : client.user.displayHexColor
+      );
     return interaction.reply({ embeds: [uptimeEmbed] });
   },
 };
