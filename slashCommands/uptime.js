@@ -17,11 +17,11 @@ module.exports = {
         true
       )
       .setColor(
-        msg.author.displayHexColor === "#000000"
+        interaction.member.displayHexColor === "#000000"
           ? "#FFFFFF"
-          : msg.author.displayHexColor
+          : interaction.member.displayHexColor
       )
-      .setFooter(`ID: ${msg.author.id}`)
+      .setFooter(`ID: ${interaction.member.id}`)
       .setTimestamp(new Date());
     return interaction.reply({ embeds: [uptimeEmbed] });
   },
