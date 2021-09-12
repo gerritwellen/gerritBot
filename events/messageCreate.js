@@ -1,5 +1,3 @@
-const { tr } = require("date-fns/locale");
-
 module.exports = (client, msg) => {
   // Ignore all bots
   if (msg.author.bot) return;
@@ -31,7 +29,9 @@ module.exports = (client, msg) => {
   }
   if (client.config.blockedChannels.length > 0) {
     allowed = true;
+    console.log("blockedCheck");
     client.config.blockedChannels.forEach((element) => {
+      console.log(`${element} ? ${msg.channelId}`);
       if (msg.channelId === element) {
         allowed = false;
       }
