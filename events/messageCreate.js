@@ -11,34 +11,19 @@ module.exports = (client, msg) => {
   ) {
     return console.log("You can't have both blocked and allowed Channels");
   }
-
-  // Check if both  blocked/allowed channels are empty
-  if (
-    client.config.allowedChannels.length == 0 &&
-    client.config.blockedChannels.length == 0
-  ) {
-    allowed = true;
-  }
-
   if (client.config.allowedChannels.length > 0) {
     client.config.allowedChannels.forEach((element) => {
       if (msg.channelId === element) {
-        allowed = true;
       }
     });
+    return;
   }
   if (client.config.blockedChannels.length > 0) {
-    allowed = true;
-    console.log("blockedCheck");
     client.config.blockedChannels.forEach((element) => {
       console.log(`${element} ? ${msg.channelId}`);
-      if (msg.channelId === element) {
-        allowed = false;
-      }
+      if (msg.channelId === element) return;
     });
   }
-
-  if (!allowed) return;
 
   // Ignore messages not starting with the prefix (in config.json)
   if (msg.content.charAt(0) !== client.config.prefix) return;
