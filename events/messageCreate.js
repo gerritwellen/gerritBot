@@ -27,7 +27,10 @@ module.exports = (client, msg) => {
       if (msg.channelId === element) {
         allowed = false;
       }
-      if (!allowed) return;
+      if (!allowed) {
+        console.log("not allowed");
+        return;
+      }
     });
   }
 
