@@ -1,14 +1,25 @@
+const { tr } = require("date-fns/locale");
+
 module.exports = (client, msg) => {
   // Ignore all bots
   if (msg.author.bot) return;
 
-  //  Check for blocked/allowed channels
+  // Check for blocked/allowed channels
   let allowed = false;
+  // Check if both  blocked/allowed channels are used
   if (
     client.config.allowedChannels.length > 0 &&
     client.config.blockedChannels.length > 0
   ) {
     return console.log("You can't have both blocked and allowed Channels");
+  }
+
+  // Check if both  blocked/allowed channels are empty
+  if (
+    client.config.allowedChannels.length == 0 &&
+    client.config.blockedChannels.length == 0
+  ) {
+    allowed = true;
   }
 
   if (client.config.allowedChannels.length > 0) {
@@ -19,9 +30,10 @@ module.exports = (client, msg) => {
     });
   }
   if (client.config.blockedChannels.length > 0) {
+    allowed = true;
     client.config.blockedChannels.forEach((element) => {
-      if (msg.channelId !== element) {
-        allowed = true;
+      if (msg.channelId == element) {
+        allowed = false;
       }
     });
   }
