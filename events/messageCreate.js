@@ -28,14 +28,16 @@ module.exports = (client, msg) => {
         allowed = false;
       }
       if (!allowed) {
-        console.log("not allowed");
         return;
       }
     });
   }
 
   // Ignore messages not starting with the prefix (in config.json)
-  if (msg.content.charAt(0) !== client.config.prefix) return;
+  if (msg.content.charAt(0) !== client.config.prefix) {
+    console.log("noPrefix");
+    return;
+  }
 
   let args = msg.content.split(" ");
   let command = args.shift().substring(1);
