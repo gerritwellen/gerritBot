@@ -46,23 +46,5 @@ for (const file of slashCommandFiles) {
   client.slashCommands.set(slashCommand.data.name, slashCommand);
 }
 
-client.on("interactionCreate", async (interaction) => {
-  if (!interaction.isCommand()) return;
-
-  const slashCommand = client.slashCommands.get(interaction.commandName);
-
-  if (!slashCommand) return;
-
-  try {
-    await slashCommand.execute(interaction, client);
-  } catch (error) {
-    console.error(error);
-    return interaction.reply({
-      content: "There was an error while executing this command!",
-      ephemeral: true,
-    });
-  }
-});
-
 // Login
 client.login(client.config.token);
