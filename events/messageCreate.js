@@ -12,16 +12,22 @@ module.exports = (client, msg) => {
     return console.log("You can't have both blocked and allowed Channels");
   }
   if (client.config.allowedChannels.length > 0) {
+    let allowed = false;
     client.config.allowedChannels.forEach((element) => {
       if (msg.channelId === element) {
+        allowed = true;
       }
     });
-    return;
+    if (!allowed) return;
   }
   if (client.config.blockedChannels.length > 0) {
+    let allowed = true;
     client.config.blockedChannels.forEach((element) => {
       console.log(`${element} ? ${msg.channelId}`);
-      if (msg.channelId === element) return;
+      if (msg.channelId === element) {
+        allowed = false;
+      }
+      if (!allowed) return;
     });
   }
 
