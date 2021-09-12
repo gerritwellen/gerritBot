@@ -32,7 +32,7 @@ module.exports = (client, msg) => {
   if (client.config.blockedChannels.length > 0) {
     allowed = true;
     client.config.blockedChannels.forEach((element) => {
-      if (msg.channelId == element) {
+      if (msg.channelId === element) {
         allowed = false;
       }
     });
