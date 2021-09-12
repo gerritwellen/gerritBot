@@ -3,7 +3,6 @@ module.exports = (client, msg) => {
   if (msg.author.bot) return;
 
   // Check for blocked/allowed channels
-  let allowed = false;
   // Check if both  blocked/allowed channels are used
   if (
     client.config.allowedChannels.length > 0 &&
@@ -11,6 +10,7 @@ module.exports = (client, msg) => {
   ) {
     return console.log("You can't have both blocked and allowed Channels");
   }
+
   if (client.config.allowedChannels.length > 0) {
     let allowed = false;
     client.config.allowedChannels.forEach((element) => {
@@ -20,16 +20,16 @@ module.exports = (client, msg) => {
     });
     if (!allowed) return;
   }
+
   if (client.config.blockedChannels.length > 0) {
     let allowed = true;
     client.config.blockedChannels.forEach((element) => {
       if (msg.channelId === element) {
         allowed = false;
-      }
-      if (!allowed) {
-        return;
+        console.log("blocked");
       }
     });
+    if (!allowed) return;
   }
 
   // Ignore messages not starting with the prefix (in config.json)
