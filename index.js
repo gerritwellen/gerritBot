@@ -17,6 +17,7 @@ fs.readdir("./events/", (err, files) => {
   files.forEach((file) => {
     const event = require(`./events/${file}`);
     let eventName = file.split(".")[0];
+    console.log(`Attempting to load event ${eventName}`);
     client.on(eventName, event.bind(null, client));
   });
 });
@@ -30,7 +31,7 @@ fs.readdir("./commands/", (err, files) => {
     if (!file.endsWith(".js")) return;
     let props = require(`./commands/${file}`);
     let commandName = file.split(".")[0];
-    console.log(`Attempting to load command ${commandName}`);
+    console.log(`Attempting to load messagecommand ${commandName}`);
     client.commands.set(commandName, props);
   });
 });
@@ -43,6 +44,7 @@ const slashCommandFiles = fs
 
 for (const file of slashCommandFiles) {
   const slashCommand = require(`./slashCommands/${file}`);
+  console.log(`Attempting to load slashcommand ${slashCommand.data.name}`);
   client.slashCommands.set(slashCommand.data.name, slashCommand);
 }
 
