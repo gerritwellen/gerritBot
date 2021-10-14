@@ -20,7 +20,7 @@ Clone this Repository using `git clone https://github.com/gerritwellen/gerritBot
 
 - Install dependencies: `npm install`
 - Run `npm run deploy` to delopy the SlashCommands
-- Start useing [nodeon](https://www.npmjs.com/package/nodemon) (automatioc restart) `nodemon index.js`
+- Start using [nodeon](https://www.npmjs.com/package/nodemon) (automatioc restart) `nodemon index.js`
 
 ### To run in production:
 
