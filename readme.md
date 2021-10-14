@@ -11,8 +11,8 @@ Clone this Repository using `git clone https://github.com/gerritwellen/gerritBot
 ## Let's run the bot
 ### To run locally for development:
 - Install dependencies: `npm install`
-- Run `node delpoy-slashCommands.js` to delopy the SlashCommands
-- Start useing [nodeon](https://www.npmjs.com/package/nodemon) (automatioc restart) `nodemon index.js`
+- Run `npm run deploy` to delopy the SlashCommands
+- Start using [nodeon](https://www.npmjs.com/package/nodemon) (automatioc restart) `nodemon index.js`
 
 ### To run in production:
 - Install dependencies: `npm install --only=production`
